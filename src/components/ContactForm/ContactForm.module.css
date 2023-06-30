@@ -1,0 +1,17 @@
+.form {
+  width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.button-add {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-add:hover,
+.button-add:active {
+  transform: translateY(1px);
+  background-color: skyblue;
+}

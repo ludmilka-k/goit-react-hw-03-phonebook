@@ -1,0 +1,15 @@
+.filter-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.filter-input {
+  display: block;
+  margin-top: 8px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}

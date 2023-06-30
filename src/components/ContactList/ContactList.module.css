@@ -1,0 +1,30 @@
+.list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.list {
+  list-style: none;
+  /*margin-bottom: 8px;*/
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.button-delete {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-delete:hover,
+.button-delete:active {
+  transform: translateY(1px);
+  background-color: skyblue;
+}
