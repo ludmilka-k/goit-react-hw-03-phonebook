@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
+import contactsData from '../contacts.json';
 
+// const contacts = contactsData;
 
 export class App extends Component {
+  static defaultProps = {
+    contacts: [],
+    filter: '',
+  };
+
+  static propTypes = {
+    contacts: PropTypes.array.isRequired,
+    filter: PropTypes.string.isRequired,
+  };
+
+
   state = {
-    contacts: [
-      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-    ],
+    contacts: contactsData,
     filter: '',
 
   }
@@ -31,12 +40,35 @@ export class App extends Component {
 
   handleRemoveContact = contactId => {
     this.setState ({
-      contacts: this.state.contacts.filter(contact => contact.id !== contactId)
+      contacts: this.state.contacts.filter(contact => contact.id !== contactId),
     })
   }
 
   handleFilterByName = event => {
-  this.setState({ filter: event.target.value });
+    this.setState({
+      filter: event.target.value,
+    });
+  }
+
+  componentDidMount() {
+    const stringifyContacts = localStorage.getItem('contacts');
+    const saveContacts = JSON.parse(stringifyContacts);
+    if(saveContacts) {
+      this.setState({
+        saveContacts
+      });
+    } 
+    // else {
+    //   this.setState({
+    //     contacts: this.state.contacts,
+    //   });
+    // }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.contacts !== prevState.contacts){
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
   }
 
   render() {
@@ -56,3 +88,4 @@ export class App extends Component {
     )
   }
 }
+
