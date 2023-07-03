@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import contactsData from '../contacts.json';
+import initialContactsData from '../contacts.json';
 
 // const contacts = contactsData;
 
@@ -20,7 +20,7 @@ export class App extends Component {
 
 
   state = {
-    contacts: contactsData,
+    contacts: [],
     filter: '',
 
   }
@@ -52,17 +52,16 @@ export class App extends Component {
 
   componentDidMount() {
     const stringifyContacts = localStorage.getItem('contacts');
-    const saveContacts = JSON.parse(stringifyContacts);
-    if(saveContacts) {
+    const localStorageContacts = JSON.parse(stringifyContacts);
+    if (localStorageContacts && localStorageContacts.length > 0) {
       this.setState({
-        saveContacts
+        contacts: localStorageContacts,
       });
-    } 
-    // else {
-    //   this.setState({
-    //     contacts: this.state.contacts,
-    //   });
-    // }
+    } else {
+      this.setState({
+        contacts: initialContactsData,
+      });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -88,4 +87,5 @@ export class App extends Component {
     )
   }
 }
+
 
