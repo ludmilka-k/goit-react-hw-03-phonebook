@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import css from './ContactForm.module.css'
+import {Form, Label, InputForm, ButtonAdd} from './ContactForm.styled'
 export class ContactForm extends Component {
   state = {
     name: '',
@@ -34,10 +34,9 @@ export class ContactForm extends Component {
   const { name, number } = this.state;
     return (
       <>
-        <form className={css.form} onSubmit={this.handleSubmit} >
-          <label>
-            <span>Name</span>
-            <input
+        <Form onSubmit={this.handleSubmit} >
+          <Label >
+            <InputForm
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -45,11 +44,10 @@ export class ContactForm extends Component {
               required
               value={name}
               onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            <span>Number</span>
-            <input
+            /> Name
+          </Label>
+          <Label >
+            <InputForm
               type="tel"
               name="number"
               pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
@@ -57,13 +55,13 @@ export class ContactForm extends Component {
               required
               value={number}
               onChange={this.handleInputChange}
-            />
-          </label>
+            /> Number
+          </Label>
 
-          <button type="submit" className={css.buttonAdd}>
+          <ButtonAdd type="submit" >
             Add contact
-          </button>
-        </form>
+          </ButtonAdd>
+        </Form>
       </>
     )
  }

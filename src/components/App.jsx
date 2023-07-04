@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
+import { ContactForm } from './ContactForm';
+import { ContactList } from './ContactList';
+import { Filter } from './Filter';
+import {Section} from './Section'
 import initialContactsData from '../contacts.json';
 
-// const contacts = contactsData;
-
 export class App extends Component {
-  static defaultProps = {
-    contacts: [],
-    filter: '',
-  };
-
-  static propTypes = {
-    contacts: PropTypes.array.isRequired,
-    filter: PropTypes.string.isRequired,
-  };
-
-
   state = {
     contacts: [],
     filter: '',
-
   }
 
   handleAddContact = data => {
@@ -76,14 +62,15 @@ export class App extends Component {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm onAddContact={this.handleAddContact}/>
-
-        <h2>Contacts</h2>
-        <Filter onFilterChange={this.handleFilterByName} filter={this.state.filter}/>
-        <ContactList onRemoveContact={this.handleRemoveContact} contacts={filteredContacts} />
-      </div>
+      <>
+        <Section title="Phonebook">
+          <ContactForm onAddContact={this.handleAddContact}/>
+        </Section>
+        <Section title="Contacts">
+          <Filter onFilterChange={this.handleFilterByName} filter={this.state.filter}/>
+          <ContactList onRemoveContact={this.handleRemoveContact} contacts={filteredContacts} />
+        </Section>
+      </>
     )
   }
 }
