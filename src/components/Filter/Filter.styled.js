@@ -9,14 +9,15 @@ export const Label = styled.label`
   flex-direction: column;
   gap: 8px;
   font-size: 16px;
-  font-weight: 500;
+  color: ${props => props.theme.colors.primaryText};
 `;
 export const Input = styled.input`
   display: block;
   font-size: 14px;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: ${props => ` 1px solid ${props.theme.colors.grey}`};
   border-radius: 4px;
-  background-color: #fff;
+  color: ${props => props.theme.colors.primaryText};
+  background-color: ${props => props.theme.colors.white};
 `;
 
